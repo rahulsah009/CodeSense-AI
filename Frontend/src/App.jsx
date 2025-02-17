@@ -22,13 +22,20 @@ function App() {
     prism.highlightAll();
   }, []);
 
-  async function reviewCode() {
+  async function reviewCode(code) {
+  try {
     const response = await axios.post("https://codesense-ai-wgdj.onrender.com", {
       code,
     });
-
-    setReview(response.data);
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error:", error.message);
+    if (error.response) {
+      console.error("Response data:", error.response.data);
+      console.error("Response status:", error.response.status);
+    }
   }
+}
 
   return (
     <>
