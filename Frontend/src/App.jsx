@@ -8,6 +8,7 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import "./App.css";
 import axios from "axios";
+const axios = require('axios');
 
 function App() {
   const [count, setCount] = useState(0);
