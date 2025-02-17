@@ -1,14 +1,12 @@
-import { useState, useEffect, useSyncExternalStore } from "react";
+import { useState, useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Editor from "react-simple-code-editor";
-
 import prism from "prismjs";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import "./App.css";
-import axios from "axios";
-const axios = require('axios');
+import axios from "axios"; // Importing axios
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,20 +20,21 @@ function App() {
     prism.highlightAll();
   }, []);
 
-  async function reviewCode(code) {
-  try {
-    const response = await axios.post("https://codesense-ai-wgdj.onrender.com", {
-      code,
-    });
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error:", error.message);
-    if (error.response) {
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
+  async function reviewCode() {
+    try {
+      const response = await axios.post("https://codesense-ai-wgdj.onrender.com", {
+        code,
+      });
+      console.log(response.data);
+      setReview(response.data);
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+      }
     }
   }
-}
 
   return (
     <>
